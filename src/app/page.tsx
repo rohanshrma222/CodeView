@@ -4,12 +4,13 @@ import Image from "next/image";
 export default function Home() {
   return (
    <div className="m-10">
+    <h1>
+      HI I AM ROHAN
+    </h1>
     <SignedOut>
             <SignInButton />
+            login
           </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
    </div>
   );
 }
