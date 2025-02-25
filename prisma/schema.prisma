@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,14 +11,14 @@ datasource db {
 }
 
 model User {
-  id      String  @id @default(uuid())  // Auto-generated UUID
-  name    String
-  email   String  @unique               // Ensuring uniqueness of emails
-  image   String?                       // Optional field
-  role    Role
-  clerkId String  @unique               // Unique constraint on clerkId
+  id           String     @id @default(uuid())  
+  name         String
+  email        String     @unique               
+  image        String?                       
+  role         Role
+  clerkId      String     @unique               
 
-  @@unique([clerkId], map: "custom_clerkId_unique") // Custom name for unique constraint
+  @@index([clerkId], name: "by_clerk_id")
 }
 
 enum Role {
@@ -29,4 +26,33 @@ enum Role {
   interviewer
 }
 
-// https://possible-owl-91.clerk.accounts.dev
+model Interview {
+  id             String    @id @default(uuid())
+  title          String
+  description    String?
+  startTime      BigInt
+  endTime        BigInt?
+  status         String
+  streamCallId   String    @unique
+  candidateId    String
+  interviewerIds String[] 
+
+  // Relationships
+  comments       Comment[]
+
+  @@index([candidateId], name: "by_candidate_id")
+  @@index([streamCallId], name: "by_stream_call_id")
+}
+
+model Comment {
+  id            String    @id @default(uuid())
+  content       String
+  rating        Int
+  interviewerId String
+  interviewId   String
+
+  // Relationships
+  interview     Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+
+  @@index([interviewId], name: "by_interview_id")
+}
