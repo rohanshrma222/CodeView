@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import Navbar from "@/components/ui/Navbar";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import './globals.css';
 
@@ -30,10 +30,15 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-          <div className="min-h-screen bg-gradient-to-r from-gray-800 to-black">
-            <Navbar />
-            <main className="">{children}</main>
-          </div>
+            <SignedIn>
+            <div className="min-h-screen">
+              <Navbar />
+              <main className="">{children}</main>
+            </div>
+            </SignedIn>
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
           </ThemeProvider>
         </body>
       </html>
