@@ -15,6 +15,7 @@ export function useUserRole() {
 
     async function fetchUserRole() {
       try {
+        //@ts-ignore
         const response = await fetch(`/api/users/${user.id}`);
         if (!response.ok) throw new Error("Failed to fetch role");
 
