@@ -5,6 +5,7 @@ import { CodeIcon } from 'lucide-react'
 import { SignedIn, UserButton } from '@clerk/nextjs'
 import DasboardBtn from './DasboardBtn'
 
+
 function Navbar() {
   const [isClient, setIsClient] = useState(false);
 
@@ -23,7 +24,7 @@ function Navbar() {
 
         <div className="flex items-center space-x-4 ml-auto gap-6">     
           <SignedIn>
-            <DasboardBtn />
+            <DasboardBtn /> 
             <ModeToggle />
             <UserButton />
           </SignedIn>
