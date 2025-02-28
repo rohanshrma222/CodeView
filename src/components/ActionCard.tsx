@@ -15,7 +15,7 @@ function ActionCard({ action, onClick }: { action: QuickActionType; onClick: () 
     >
       {/* ACTION GRADIENT */}
       <div
-        className={`absolute inset-0 bg-gradient-to-br ${action.gradient} opacity-100 group-hover:opacity-50 transition-opacity`}
+        className={`absolute inset-0 bg-gradient-to-r ${action.gradient} opacity-100 group-hover:opacity-50 transition-opacity`}
       />
 
       {/* ACTION CONTENT WRAPPER */}
@@ -30,9 +30,9 @@ function ActionCard({ action, onClick }: { action: QuickActionType; onClick: () 
 
           {/* ACTION DETAILS */}
           <div className="space-y-1">
-            <h3 className="font-semibold text-xl group-hover:text-primary transition-colors">
+            <div className="font-semibold text-xl group-hover:text-primary transition-colors">
               {action.title}
-            </h3>
+            </div>
             <p className="text-sm text-muted-foreground">{action.description}</p>
           </div>
         </div>

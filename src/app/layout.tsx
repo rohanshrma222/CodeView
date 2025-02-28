@@ -1,7 +1,7 @@
 "use client";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import Navbar from "@/components/ui/Navbar";
+import Navbar from "@/components/Navbar";
 import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import './globals.css';

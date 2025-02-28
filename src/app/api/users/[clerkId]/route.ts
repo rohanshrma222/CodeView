@@ -5,10 +5,12 @@ import { getUserByClerkId } from '../route';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { clerkId: string } }
+  context: { params: { clerkId: string } }
 ) {
+
+   const params = await Promise.resolve(context.params);
   const clerkId = params.clerkId;
-  
+
   try {
     const user = await getUserByClerkId(clerkId);
     

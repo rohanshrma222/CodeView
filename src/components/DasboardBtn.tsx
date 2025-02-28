@@ -1,11 +1,12 @@
 "use client"
 
 import {SparkleIcon } from "lucide-react";
-import { Button } from "./button";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useUserRole } from "@/hooks/useUserRole";
+import { Button } from "./ui/button";
 // import { useUserRole } from "@/hooks/useUserRole";
 
 function DasboardBtn() {
