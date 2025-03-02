@@ -17,9 +17,16 @@ export function useUserRole() {
       try {
         //@ts-ignore
         const response = await fetch(`/api/users/${user.id}`);
-        if (!response.ok) throw new Error("Failed to fetch role");
-
-        const data: { role?: string } = await response.json();
+    
+        if (!response.ok) {
+          const errorText = await response.text(); // Read the error response as text
+          console.error("Failed to fetch role:", errorText);
+          throw new Error(errorText);
+        }
+    
+        const data: { role?: string } = await response.json(); // Read the JSON first
+        console.log("Fetched role data:", data);
+        
         setRole(data.role ?? null);
       } catch (error) {
         console.error("Error fetching user role:", error);

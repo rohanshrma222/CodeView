@@ -5,20 +5,21 @@ import Navbar from "@/components/Navbar";
 import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import './globals.css';
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,
 }: { children: React.ReactNode }) {
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   // Your logic here
-  //   setIsLoading(false); // Set loading to false after the effect runs
-  // }, []);
+  useEffect(() => {
+    // Your logic here
+    setIsLoading(false); // Set loading to false after the effect runs
+  }, []);
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>; // Render a loading state while checking auth
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>; // Render a loading state while checking auth
+  }
 
   return (
     <ClerkProvider>
@@ -40,6 +41,7 @@ export default function RootLayout({
               <RedirectToSignIn />
             </SignedOut>
           </ThemeProvider>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

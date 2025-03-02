@@ -11,7 +11,7 @@ export async function GET(
    const params = await Promise.resolve(context.params);
   const clerkId = params.clerkId;
 
-  try {
+  try { 
     const user = await getUserByClerkId(clerkId);
     
     if (!user) {
